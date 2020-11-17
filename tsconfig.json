@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "CommonJS",
+    "lib": ["DOM"],
+    "baseUrl": "./src",
+    "outDir": "./dist/",
+    "noEmit": false,
+    "sourceMap": false,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "paths": {
+      "~*": ["./*"]
+    }
+  },
+  "include": ["src/**/*", "test/**/*"],
+}
