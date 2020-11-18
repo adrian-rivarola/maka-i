@@ -80,10 +80,14 @@ export default {
     }, state.players.length * DEFAULT_DELAY * 2 + 500);
   },
   SOCKET_gameResults({ dispatch, commit, state }, { players, winner }) {
-    setTimeout(() => {
-      commit("setPlayers", players);
-      commit("setGameState", "Waiting");
-    }, 2000);
+    players.forEach((player, idx) => {
+      setTimeout(
+        () => commit("updatePlayer", player),
+        2 * DEFAULT_DELAY * idx + 1
+      );
+    });
+
+    let totalDelay = DEFAULT_DELAY * players.length * 2;
 
     setTimeout(() => {
       let className = "justify-content-center";
@@ -97,9 +101,9 @@ export default {
           theme: "outline",
           className,
         })
-        .goAway(4000);
-    }, 3000);
+        .goAway(5000);
+    }, totalDelay + 1000);
 
-    setTimeout(() => dispatch("setReady"), 7000);
+    setTimeout(() => dispatch("setReady"), totalDelay + 6000);
   },
 };
